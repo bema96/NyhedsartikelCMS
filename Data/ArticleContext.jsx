@@ -2,58 +2,48 @@ import { useState, useEffect } from "react";
 import client from "../src/Utils/contentfulClient";
 import { useParams } from "react-router-dom";
 
+// Custom hook til at hente artikler
 const useArticle = () => {
-    const { category } = useParams();
-    const [articles, setArticles] = useState([]);
-    const [filteredArticles, setFilteredArticles] = useState([]);
-    const [error, setError] = useState(null);
-
-    const date = new Date().toLocaleDateString('da-DK')
-
+    const { category } = useParams(); // Hent kategori fra URL
+    const [articles, setArticles] = useState([]); // State til artikler
+    const [filteredArticles, setFilteredArticles] = useState([]); // State til filtrerede artikler
+    const [error, setError] = useState(null); // State til fejl
 
     useEffect(() => {
-
+        // Hent artikler fra Contentful
         client.getEntries({ content_type: 'nyhedsartikler' })
             .then((data) => {
-
+                // Map data til artikel objekter
                 const fetchedArticles = data.items.map((item) => ({
                     id: item.sys.id,
                     title: item.fields.overskrift,
                     publishDate: new Date(item.fields.udgivelsesdato).toLocaleDateString("da-DK"),
                     author: item.fields.skribent,
-                    image: item.fields.artikelbillede ? item.fields.artikelbillede.fields.file.url : null,
+                    image: item.fields.artikelbillede?.fields.file.url || null,
                     content: item.fields.indhold,
                     category: item.fields.kategori,
                     slug: item.fields.slug,
                 }));
 
-                setArticles(fetchedArticles);
-               
+                setArticles(fetchedArticles); // Opdater artikler state
             })
             .catch((error) => {
-                setError(error);
-                console.error("Error fetching articles:", error);
+                setError(error); // Opdater fejl state
+                console.error("Error fetching articles:", error); // Log fejl
             });
     }, []);
 
-
     useEffect(() => {
+        // Filtrer artikler baseret på kategori
         if (category) {
-            const filtered = articles.filter(article => article.category.toLowerCase() === category.toLowerCase() );
+            const filtered = articles.filter(article => article.category.toLowerCase() === category.toLowerCase());
             setFilteredArticles(filtered);
-        }
-        else {
+        } else {
             setFilteredArticles(articles);
         }
-    }, [category, articles])
+    }, [category, articles]);
 
-
-
-    useEffect(() => {
-        console.log(filteredArticles); 
-    }, [filteredArticles]);
-
-    return { articles: filteredArticles, error };
+    return { articles: filteredArticles, error }; // Returner filtrerede artikler og fejl
 };
 
 export default useArticle;

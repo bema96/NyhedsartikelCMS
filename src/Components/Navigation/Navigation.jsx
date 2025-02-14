@@ -1,14 +1,11 @@
 import { useState } from "react";
 import { NavStyled } from "./Navigation.styled";
 import Logo from "../../Assets/INGN.svg";
-import { Link } from "react-router-dom";
+import { NavLinkStyled } from "../NavStyledLink/NavLink.styled";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleNavClick = () => {
-    setIsOpen(false);
-  };
 
   return (
     <NavStyled isOpen={isOpen}>
@@ -30,13 +27,13 @@ const Navigation = () => {
        {/* Navigation Menu */}
        <div className={`menu ${isOpen ? "open" : ""}`}>
           <ul>
-            <li><Link to="/" onClick={handleNavClick}>Alle</Link></li>
-            <li><Link to="/category/indland" onClick={handleNavClick}>Indland</Link></li>
-            <li><Link to="/category/udland" onClick={handleNavClick}>Udland</Link></li>
-            <li><Link to="/category/teknologi" onClick={handleNavClick}>Teknologi</Link></li>
-            <li><Link to="/category/sport" onClick={handleNavClick}>Sport</Link></li>
-            <li><Link to="/category/politik" onClick={handleNavClick}>Politik</Link></li>
-            <li><Link to="/category/samfund" onClick={handleNavClick}>Samfund</Link></li>
+            <li><NavLinkStyled path={"/"}>Alle</NavLinkStyled></li>
+            <li><NavLinkStyled path={"category/indland"}>Indland</NavLinkStyled></li>
+            <li><NavLinkStyled path={"category/udland"}>Udland</NavLinkStyled></li>
+            <li><NavLinkStyled path={"category/teknologi"}>Teknologi</NavLinkStyled></li>
+            <li><NavLinkStyled path={"category/sport"}>Sport</NavLinkStyled></li>
+            <li><NavLinkStyled path={"category/politik"}>Politik</NavLinkStyled></li>
+            <li><NavLinkStyled path={"category/samfund"}>Samfund</NavLinkStyled></li>
           </ul>
         </div>
 
