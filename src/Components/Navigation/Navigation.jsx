@@ -8,7 +8,7 @@ const Navigation = () => {
 
 
   return (
-    <NavStyled isOpen={isOpen}>
+    <NavStyled $isOpen={isOpen}>
 
       <div className="nav-container">
         {/* Logo */}

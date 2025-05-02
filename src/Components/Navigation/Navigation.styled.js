@@ -56,7 +56,7 @@ padding: 1.5rem;
     }
 
     .menu {
-      display: ${({ isOpen }) => (isOpen ? "block" : "none")}; /* Skubber indhold ned */
+      display: ${({ $isOpen }) => ($isOpen ? "block" : "none")};
       width: 100%;
       background: white;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);

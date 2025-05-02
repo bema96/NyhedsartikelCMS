@@ -3,11 +3,13 @@ import Layout from "./Layout/Layout"
 import FrontPage from "./Pages/FrontPage/Home"
 import Article from "./Components/ArticlesDisplay/ArticleDisplay"
 import ArticleInfo from "./Components/ArticleMoreInfo/ArticleInfo"
+import { Analytics } from "./Analytics"
 
 function App() {
   
   return (
     <>
+    <Analytics />
     <Routes>
       <Route path="/" element={<Layout />} >
         <Route index element={<FrontPage /> } />
