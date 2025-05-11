@@ -4,13 +4,17 @@ import { useEffect } from 'react';
 export const Analytics = () => {
 
     useEffect(() => {
-        ReactGA.initialize('G-PVLYFG5WEN'); 
+        const consent = localStorage.getItem("cookie-consent");
+        // Check if the user has given consent for cookies
+
+        if ( consent === "accepted" ) {
+
+            ReactGA.initialize('G-PVLYFG5WEN'); 
+            ReactGA.send({
+                hitType: "pageview",})
+
+        }
     }, []);
     
-    return (
-
-        <div>
-            <p>Google Anlytics</p>
-        </div>
-    )
+    return null;
 };
