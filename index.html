@@ -1,10 +1,29 @@
 <!doctype html>
-<html lang="en">
+<html lang="da">
   <head>
     <meta charset="UTF-8" />
+
+    <!-- Mobilvenlig visning -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
+
+    <!-- Default titel (bliver overskrevet af Helmet i React) -->
+    <title>Bema Nyheder</title>
+
+    <!-- SEO fallback (hvis React fejler, loader langsomt eller crawler kommer før React kører) -->
+    <meta name="description" content="Nyhedsoversigt over aktuelle artikler, analyser og opdateringer." />
+    <meta name="keywords" content="nyheder, artikler, presse, analyser" />
+
+    <!-- Sociale medier fallback -->
+    <meta property="og:title" content="Bema Nyheder" />
+    <meta property="og:description" content="Seneste nyheder og artikler samlet ét sted." />
+    <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=Bema+Nyheder" />
+    <meta property="og:url" content="https://nyhedsartikler.netlify.app" />
+    <meta property="og:type" content="website" />
+
+    <!-- Favicon (valgfrit, men nice touch) -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   </head>
+
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
